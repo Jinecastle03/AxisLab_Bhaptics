@@ -1,0 +1,36 @@
+# Unity 기본 무시 폴더
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+
+# bHaptics SDK(깃에 안 올리고 싶으면 SDK 폴더 경로 추가)
+Assets/Bhaptics/
+
+
+# IDE / 빌드 산출물
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# VS / Rider / VSCode
+.vs/
+.idea/
+.vscode/
+
+# 기타
+.DS_Store
