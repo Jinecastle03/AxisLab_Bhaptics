@@ -510,8 +510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9893a1e5b5512df428aedc5fb60641bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  mapper: {fileID: 0}
-  csvFile: {fileID: 0}
+  mapper: {fileID: 1929407880}
+  csvFile: {fileID: 4900000, guid: 7206c3c24f3c4ae44b5464009e1f2e9a, type: 3}
   deviceType: 0
   minDurationMs: 100
   stopPreviousOnReplay: 1
