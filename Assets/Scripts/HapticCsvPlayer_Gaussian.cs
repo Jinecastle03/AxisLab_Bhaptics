@@ -6,10 +6,10 @@ using System.IO;
 using UnityEngine;
 using Bhaptics.SDK2;
 
-public class HapticCsvPlayer : MonoBehaviour
+public class HapticCsvPlayer_Gaussian : MonoBehaviour
 {
     [Header("Refs")]
-    public VestCoordinateMapper mapper;
+    public VestCoordinateMapper_Gaussian mapper;
 
     [Tooltip("재생할 CSV 파일 (TextAsset).")]
     public TextAsset csvFile;
