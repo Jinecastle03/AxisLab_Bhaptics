@@ -10,41 +10,38 @@ namespace AxisLabHaptics
         public MotorLayoutAsset backLayout;
 
         [Header("Playback")]
-        public bool playOnStart = false;
-        public bool loop = true;
+        public bool loop = false;
         [Range(0.1f, 4f)] public float speed = 1f;
 
-        [Tooltip("Each point becomes a pulse with this duration (seconds).")]
+        [Tooltip("Each point is a single-shot pulse with this duration (seconds).")]
         public float pulseDuration = 0.12f;
 
-        [Tooltip("If true, sort points by time before play.")]
+        [Tooltip("Sort points by time before play.")]
         public bool sortByTimeOnPlay = true;
 
-        [Header("Debug Output")]
+        [Header("Output")]
         public bool useDebugOutput = true;
+        public BhapticsOutput bhapticsOutput; // ✅ 실제 장비 출력용(아래에서 만들 코드)
 
         private IHapticOutput output;
         private float t0;
         private bool playing;
+        private int lastFiredIndex = -1;
 
         private void Awake()
         {
-            output = useDebugOutput ? new DebugHapticOutput() : new DebugHapticOutput();
-        }
-
-        private void Start()
-        {
-            if (playOnStart) Play();
+            // Output 선택
+            if (!useDebugOutput && bhapticsOutput != null) output = bhapticsOutput;
+            else output = new DebugHapticOutput();
         }
 
         public void Play()
         {
             if (trace == null || trace.points == null || trace.points.Count == 0)
             {
-                Debug.LogWarning("[TracePlayer] No trace points to play.");
+                Debug.LogWarning("[TracePlayer] No trace points.");
                 return;
             }
-
             if (SessionSettings.Instance == null)
             {
                 Debug.LogWarning("[TracePlayer] SessionSettings missing.");
@@ -56,6 +53,8 @@ namespace AxisLabHaptics
 
             t0 = Time.time;
             playing = true;
+            lastFiredIndex = -1;
+
             Debug.Log("[TracePlayer] Play");
         }
 
@@ -72,50 +71,52 @@ namespace AxisLabHaptics
 
             float t = (Time.time - t0) * speed;
 
-            // trace 끝
-            float tEnd = trace.points[trace.points.Count - 1].time + pulseDuration;
-            if (t > tEnd)
+            // 다음에 쏠 index 찾기: lastFiredIndex+1부터 time이 t를 넘지 않는 가장 마지막
+            int nextIndex = lastFiredIndex + 1;
+            if (nextIndex >= trace.points.Count)
             {
-                if (loop) { t0 = Time.time; return; }
-                Stop();
+                // 끝 처리
+                if (loop)
+                {
+                    t0 = Time.time;
+                    lastFiredIndex = -1;
+                }
+                else
+                {
+                    Stop();
+                }
                 return;
             }
 
-            // 현재 시간에 활성화되는 point 하나 찾기(간단 버전: 가장 가까운 시간대)
-            // 실제로는 "동시에 여러 점"도 가능하게 확장 가능.
-            TracePoint active = null;
-            float best = float.MaxValue;
+            // 아직 다음 점 시간이 안 됐으면 대기
+            if (t < trace.points[nextIndex].time) return;
 
-            for (int i = 0; i < trace.points.Count; i++)
-            {
-                float dt = t - trace.points[i].time;
-                if (dt < 0f || dt > pulseDuration) continue;
-                if (dt < best)
-                {
-                    best = dt;
-                    active = trace.points[i];
-                }
-            }
+            // ✅ 점 1개 "단발" 실행
+            FirePoint(nextIndex);
+            lastFiredIndex = nextIndex;
+        }
 
-            if (active == null) return;
-
-            // 0..1 envelope x
-            float envX = 1f - (best / Mathf.Max(1e-6f, pulseDuration));
-
-            // 최종 강도 (Envelope + Perceptual)
+        private void FirePoint(int index)
+        {
             var s = SessionSettings.Instance;
-            float intensity = HapticProfile.Evaluate(s, active.baseIntensity, envX);
+            var p = trace.points[index];
 
-            // front/back z에 따라 레이아웃 선택 (z가 0/1)
-            bool isFront = (s.frontIsZ0 ? active.pos.z == 0f : active.pos.z == 1f);
+            // intensity: baseIntensity에 profile(Envelope/Perceptual)을 한 번 적용
+            // 단발이므로 envX=1로 넣음(최대치)
+            float intensity = HapticProfile.Evaluate(s, p.baseIntensity, 1f);
+
+            // front/back 선택: z=0/1 규칙
+            bool isFront = (s.frontIsZ0 ? p.pos.z == 0f : p.pos.z == 1f);
             var layout = isFront ? frontLayout : backLayout;
             if (layout == null) return;
 
-            // 패턴 생성 (Gaussian/Tactile) → 모터 가중치
-            var motors = PatternGenerator.Generate(s, active.pos, layout);
+            // 패턴 생성 (Gaussian/Tactile)
+            var motors = PatternGenerator.Generate(s, p.pos, layout);
 
             // 출력
             output.SubmitFrame(motors, intensity);
+
+            Debug.Log($"[TracePlayer] Fired #{index} t={p.time:F3} pos=({p.pos.x:F3},{p.pos.y:F3},{p.pos.z:F0}) intensity={intensity:F3}");
         }
     }
 }
