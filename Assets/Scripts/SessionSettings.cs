@@ -5,6 +5,7 @@ namespace AxisLabHaptics
     public enum StrokeType { Gaussian, TactileBrush }
     public enum EnvelopeType { Lerp, SmoothStep, ExpIn, ExpOut, Curve }
     public enum PerceptualMapType { None, ThresholdGamma, Logistic }
+    public enum PathBlendMode { Linear, Gaussian }
 
     public class SessionSettings : MonoBehaviour
     {
@@ -30,10 +31,15 @@ namespace AxisLabHaptics
 
         [Header("Z Convention")]
         [Tooltip("If true: Front z=0, Back z=1. If false: Front z=1, Back z=0.")]
-        public bool frontIsZ0 = true;
+        public bool frontIsZ0 = false;
 
         [Header("Motor Mapping")]
         [Range(1, 4)] public int blendK = 1;
+
+        [Header("PlayPath Precompute (TracePlayer_PlayPathPrecompute)")]
+        public PathBlendMode pathBlendMode = PathBlendMode.Linear;
+        [Tooltip("Gaussian 블렌딩 선택 시 시간 축 sigma(초). 0.1~0.4 권장")]
+        [Range(0.01f, 1f)] public float pathGaussianSigma = 0.2f;
 
         // =========================
         // ✅ 연결감(Continuous stroke) 핵심 파라미터

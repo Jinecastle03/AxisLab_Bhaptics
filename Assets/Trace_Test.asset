@@ -14,79 +14,170 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AxisLabHaptics.HapticTraceAsset
   points:
   - time: 0
-    pos: {x: 2.9039655, y: 0.21532577, z: 0}
+    pos: {x: 2.8098502, y: 0.29090747, z: 1}
     baseIntensity: 1
     sigma: 0.12
     motors:
     - index: 3
       weight: 1
   - time: 0.5
-    pos: {x: 2.5919728, y: 0.27038348, z: 0}
+    pos: {x: 2.5618315, y: 0.27540618, z: 1}
     baseIntensity: 1
     sigma: 0.12
     motors:
     - index: 3
       weight: 1
   - time: 1
-    pos: {x: 2.4084482, y: 0.2703834, z: 0}
+    pos: {x: 2.0967958, y: 0.27540618, z: 1}
     baseIntensity: 1
     sigma: 0.12
     motors:
     - index: 2
       weight: 1
   - time: 1.5
-    pos: {x: 2.1331606, y: 0.2703833, z: 0}
+    pos: {x: 1.3992428, y: 0.27540618, z: 1}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 2
+    - index: 1
       weight: 1
   - time: 2
-    pos: {x: 1.8945785, y: 0.27038348, z: 0}
+    pos: {x: 0.3916651, y: 0.22890276, z: 1}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 2
+    - index: 0
       weight: 1
   - time: 2.5
-    pos: {x: 1.5642335, y: 0.25203082, z: 0}
+    pos: {x: 0.2211518, y: 0.21340147, z: 1}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 2
+    - index: 0
       weight: 1
   - time: 3
-    pos: {x: 1.2522416, y: 0.23367852, z: 0}
+    pos: {x: 0, y: 0.16128078, z: 0.90554965}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 1
+    - index: 0
       weight: 1
   - time: 3.5
-    pos: {x: 0.8668388, y: 0.23367861, z: 0}
+    pos: {x: 0, y: 0.19918558, z: 0.77136505}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 1
+    - index: 0
       weight: 1
   - time: 4
-    pos: {x: 0.6466087, y: 0.23367861, z: 0}
+    pos: {x: 0, y: 0.20643926, z: 0.6176291}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 1
+    - index: 0
       weight: 1
   - time: 4.5
-    pos: {x: 0.42638013, y: 0.23367861, z: 0}
+    pos: {x: 0, y: 0.2194553, z: 0.3417722}
     baseIntensity: 1
     sigma: 0.12
     motors:
     - index: 0
       weight: 1
   - time: 5
-    pos: {x: 0.22450224, y: 0.23367843, z: 0}
+    pos: {x: 0, y: 0.25986376, z: 0.13275462}
     baseIntensity: 1
     sigma: 0.12
     motors:
     - index: 0
+      weight: 1
+  - time: 5.5
+    pos: {x: 0.21608305, y: 0.19045651, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 0
+      weight: 1
+  - time: 6
+    pos: {x: 0.54641545, y: 0.24319616, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 1
+      weight: 1
+  - time: 6.5
+    pos: {x: 1.2013074, y: 0.2488086, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 1
+      weight: 1
+  - time: 7
+    pos: {x: 1.9640172, y: 0.20597926, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 2
+      weight: 1
+  - time: 7.5
+    pos: {x: 2.5915914, y: 0.22794816, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
+      weight: 1
+  - time: 8
+    pos: {x: 2.7509093, y: 0.32750863, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
+      weight: 1
+  - time: 8.5
+    pos: {x: 3, y: 0.28583452, z: 0.08425152}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
+      weight: 1
+  - time: 9
+    pos: {x: 3, y: 0.2690784, z: 0.23695683}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
+      weight: 1
+  - time: 9.5
+    pos: {x: 3, y: 0.26819864, z: 0.38539755}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
+      weight: 1
+  - time: 10
+    pos: {x: 3, y: 0.2672808, z: 0.54022855}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
+      weight: 1
+  - time: 10.5
+    pos: {x: 3, y: 0.26651627, z: 0.66921}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
+      weight: 1
+  - time: 11
+    pos: {x: 3, y: 0.26577973, z: 0.79354364}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
+      weight: 1
+  - time: 11.5
+    pos: {x: 3, y: 0.265103, z: 0.9076911}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
       weight: 1
