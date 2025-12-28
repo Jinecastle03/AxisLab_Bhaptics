@@ -14,119 +14,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AxisLabHaptics.HapticTraceAsset
   points:
   - time: 0
-    pos: {x: 0.57, y: 2.45, z: 0}
+    pos: {x: 2.9039655, y: 0.21532577, z: 0}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 9
-      weight: 0.28147963
-    - index: 13
-      weight: 0.25417405
-    - index: 8
-      weight: 0.24400847
-    - index: 12
-      weight: 0.22033788
-  - time: 0.5
-    pos: {x: 2.3766665, y: 2.1366668, z: 0}
-    baseIntensity: 1
-    sigma: 0.12
-    motors:
-    - index: 10
-      weight: 0.38105857
-    - index: 11
-      weight: 0.29626435
-    - index: 14
-      weight: 0.1815365
-    - index: 15
-      weight: 0.1411405
-  - time: 1
-    pos: {x: 2.5900002, y: 0.74333334, z: 0}
-    baseIntensity: 1
-    sigma: 0.12
-    motors:
-    - index: 7
-      weight: 0.3392955
-    - index: 6
-      weight: 0.28236416
     - index: 3
-      weight: 0.20649429
+      weight: 1
+  - time: 0.5
+    pos: {x: 2.5919728, y: 0.27038348, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 3
+      weight: 1
+  - time: 1
+    pos: {x: 2.4084482, y: 0.2703834, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
     - index: 2
-      weight: 0.17184603
+      weight: 1
   - time: 1.5
-    pos: {x: 1.23, y: 0.75, z: 1}
+    pos: {x: 2.1331606, y: 0.2703833, z: 0}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 5
-      weight: 0.39639026
-    - index: 1
-      weight: 0.23798203
-    - index: 6
-      weight: 0.22846405
     - index: 2
-      weight: 0.13716367
+      weight: 1
   - time: 2
-    pos: {x: 1.3966666, y: 1.7033333, z: 1}
+    pos: {x: 1.8945785, y: 0.27038348, z: 0}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 9
-      weight: 0.3327746
-    - index: 10
-      weight: 0.2695034
-    - index: 5
-      weight: 0.219752
-    - index: 6
-      weight: 0.17797004
+    - index: 2
+      weight: 1
   - time: 2.5
-    pos: {x: 0.77, y: 2.39, z: 0}
+    pos: {x: 1.5642335, y: 0.25203082, z: 0}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 9
-      weight: 0.35263988
-    - index: 13
-      weight: 0.2817324
-    - index: 8
-      weight: 0.20324801
-    - index: 12
-      weight: 0.1623797
+    - index: 2
+      weight: 1
   - time: 3
-    pos: {x: 2.4766667, y: 2.3966665, z: 0}
+    pos: {x: 1.2522416, y: 0.23367852, z: 0}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 10
-      weight: 0.28283978
-    - index: 11
-      weight: 0.26968688
-    - index: 14
-      weight: 0.22906274
-    - index: 15
-      weight: 0.21841064
+    - index: 1
+      weight: 1
   - time: 3.5
-    pos: {x: 1.9366667, y: 2.4433331, z: 1}
+    pos: {x: 0.8668388, y: 0.23367861, z: 0}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 10
-      weight: 0.37504363
-    - index: 14
-      weight: 0.3340851
-    - index: 9
-      weight: 0.1538358
-    - index: 13
-      weight: 0.13703537
+    - index: 1
+      weight: 1
   - time: 4
-    pos: {x: 0.72333336, y: 2.3500001, z: 1}
+    pos: {x: 0.6466087, y: 0.23367861, z: 0}
     baseIntensity: 1
     sigma: 0.12
     motors:
-    - index: 9
-      weight: 0.3524819
-    - index: 13
-      weight: 0.25953123
-    - index: 8
-      weight: 0.22345655
-    - index: 12
-      weight: 0.1645303
+    - index: 1
+      weight: 1
+  - time: 4.5
+    pos: {x: 0.42638013, y: 0.23367861, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 0
+      weight: 1
+  - time: 5
+    pos: {x: 0.22450224, y: 0.23367843, z: 0}
+    baseIntensity: 1
+    sigma: 0.12
+    motors:
+    - index: 0
+      weight: 1

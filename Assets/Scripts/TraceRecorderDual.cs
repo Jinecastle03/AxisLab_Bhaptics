@@ -15,15 +15,12 @@ namespace AxisLabHaptics
         [Header("Target Trace Asset (Project Asset)")]
         public HapticTraceAsset traceAsset;
 
-        [Header("Point Defaults")]
+        [Header("Recording Defaults")]
         [Range(0f, 1f)] public float defaultIntensity = 1f;
-        public float defaultSigma = 0.12f;
+        [Range(0.01f, 2f)] public float defaultSigma = 0.12f;
 
-        [Header("Timing (Fixed Step)")]
-        [Tooltip("When true, new points get time = (index * fixedDt) automatically.")]
-        public bool useFixedDt = true;
-
-        [Tooltip("Fixed dt between points (e.g., 0.5s).")]
+        [Header("Time Assignment")]
+        [Tooltip("Auto time step between recorded points (e.g., 0.5s).")]
         public float fixedDt = 0.5f;
 
         [Tooltip("If true, allow editing time later in Inspector (always possible). This only affects auto-assignment on record.")]
@@ -44,6 +41,13 @@ namespace AxisLabHaptics
             if (backClick != null) backClick.OnClickPoint3D -= HandleClick;
         }
 
+        // ✅ NEW: Cube/외부 입력에서도 기록할 수 있는 public API
+        public void RecordPoint(Vector3 p)
+        {
+            HandleClick(p);
+        }
+
+        // 기존 UI 클릭 처리 로직 (내부에서 공통 사용)
         private void HandleClick(Vector3 p)
         {
             if (traceAsset == null || SessionSettings.Instance == null)
@@ -52,9 +56,15 @@ namespace AxisLabHaptics
                 return;
             }
 
-            // z(0/1) 기준 front/back 선택
             var s = SessionSettings.Instance;
-            bool isFront = (s.frontIsZ0 ? p.z == 0f : p.z == 1f);
+
+            // ✅ z=0/1뿐 아니라 연속 z도 허용: 0.5 기준으로 면 판정
+            bool isFront;
+            if (s.frontIsZ0)
+                isFront = (p.z <= 0.5f);   // z=0 쪽이 front
+            else
+                isFront = (p.z > 0.5f);    // z=1 쪽이 front
+
             var layout = isFront ? frontLayout : backLayout;
 
             if (layout == null)
@@ -85,16 +95,15 @@ namespace AxisLabHaptics
 
             if (logOnRecord)
             {
-                Debug.Log($"[TraceRecorderDual] +Point idx={traceAsset.points.Count - 1} time={t:F3} pos=({p.x:F3},{p.y:F3},{p.z:F0})");
+                Debug.Log($"[TraceRecorderDual] Recorded t={t:F3} pos=({p.x:F3},{p.y:F3},{p.z:F3}) side={(isFront ? "Front" : "Back")} points={traceAsset.points.Count}");
             }
         }
 
         private float GetAutoTime()
         {
-            if (!useFixedDt) return 0f;
-
-            int idx = (traceAsset != null) ? traceAsset.points.Count : 0;
-            return idx * fixedDt;
+            if (traceAsset == null) return 0f;
+            int n = traceAsset.points.Count;
+            return n * fixedDt;
         }
 
         public void ClearTrace()
